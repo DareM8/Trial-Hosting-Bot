@@ -1,14 +1,12 @@
-import discord
 from discord.ext import commands
-import json
-import os
-import random
-import pathlib
+import random, pathlib, os, json, discord, base64
 
 path = pathlib.Path(__file__).parent.absolute()
 os.chdir(path)
 
-TOKEN = 'ODAxMzA1MDczMDc4MTA4MTcx.YAevgA.gW9C_umd44NDpWeTvjiEGjtyaXU'
+TOKEN = ""
+with open("config.txt", "r") as f:
+    TOKEN = base64.b64decode(bytes(f.read().strip(), "utf-8")).decode('utf-8')
 
 client = commands.Bot(command_prefix = '.')
 
@@ -294,10 +292,10 @@ async def buy_this(user,item_name,amount):
 				break
 			index+=1
 		if t == None:
-			obj = ("item": item_name , "amount" : amount)
+			obj = {"item": item_name , "amount" : amount}
 			user[str(user.id)]["inventory"].append(obj)
 	except:
-		obj = ("item": item_name , "amount" : amount)
+		obj = {"item": item_name , "amount" : amount}
 		users[str(user.id)]["inventory"] = [obj]
 
 	with open("mainbank.json","w") as f:
