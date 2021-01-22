@@ -8,7 +8,7 @@ import pathlib
 path = pathlib.Path(__file__).parent.absolute()
 os.chdir(path)
 
-TOKEN = 'ODAxMzA1MDczMDc4MTA4MTcx.YAevgA.Wfkh2EeuzvI48vkYzd1KIPeFaMY'
+TOKEN = 'ODAxMzA1MDczMDc4MTA4MTcx.YAevgA.gW9C_umd44NDpWeTvjiEGjtyaXU'
 
 client = commands.Bot(command_prefix = '.')
 
@@ -204,7 +204,7 @@ mainshop = [{"name":"Dildo :eggplant:","price":69,"description":"Very Popular am
 			{"name":"Electric Vibrator","price":420,"description":"Even more Popular among the 'Ladies'"},
 			{"name":"Watch","price":200,"description":"Tells Time Very Well :luaghing:"},
 			{"name":"Laptop","price":1000,"description":"Good for work. :+1:"},
-			{"name":"Pc","price":5000,"description":"Gamers only :sunglasses:"}
+			{"name":"Pc","price":5000,"description":"Gamers only :sunglasses:"},
 			{"names":"House","price":20000,"description":"You know what they say, there is no place like home, but home, so pls just buy it..... pls...."},]
 
 @client.command()
