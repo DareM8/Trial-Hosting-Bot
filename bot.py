@@ -1,14 +1,12 @@
-import discord
 from discord.ext import commands
-import json
-import os
-import random
-import pathlib
+import random, pathlib, os, json, discord, base64
 
 path = pathlib.Path(__file__).parent.absolute()
 os.chdir(path)
 
-TOKEN = 'ODAxMzA1MDczMDc4MTA4MTcx.YAevgA.Wfkh2EeuzvI48vkYzd1KIPeFaMY'
+TOKEN = ""
+with open("config.txt", "r") as f:
+    TOKEN = base64.b64decode(bytes(f.read().strip(), "utf-8")).decode('utf-8')
 
 client = commands.Bot(command_prefix = '.')
 
@@ -204,7 +202,7 @@ mainshop = [{"name":"Dildo :eggplant:","price":69,"description":"Very Popular am
 			{"name":"Electric Vibrator","price":420,"description":"Even more Popular among the 'Ladies'"},
 			{"name":"Watch","price":200,"description":"Tells Time Very Well :luaghing:"},
 			{"name":"Laptop","price":1000,"description":"Good for work. :+1:"},
-			{"name":"Pc","price":5000,"description":"Gamers only :sunglasses:"}
+			{"name":"Pc","price":5000,"description":"Gamers only :sunglasses:"},
 			{"names":"House","price":20000,"description":"You know what they say, there is no place like home, but home, so pls just buy it..... pls...."},]
 
 @client.command()
@@ -294,10 +292,10 @@ async def buy_this(user,item_name,amount):
 				break
 			index+=1
 		if t == None:
-			obj = ("item": item_name , "amount" : amount)
+			obj = {"item": item_name , "amount" : amount}
 			user[str(user.id)]["inventory"].append(obj)
 	except:
-		obj = ("item": item_name , "amount" : amount)
+		obj = {"item": item_name , "amount" : amount}
 		users[str(user.id)]["inventory"] = [obj]
 
 	with open("mainbank.json","w") as f:
