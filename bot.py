@@ -16,7 +16,7 @@ async def on_ready():
 	print('Connected')
 
 
-@client.command(alias = ["bal"])
+@client.command(aliases = ["bal"])
 async def balance(ctx):
 	await open_account(ctx.author)
 	user = ctx.author
@@ -51,7 +51,7 @@ async def beg(ctx):
 		json.dump(users,f)
 
 
-@client.command(alias = ["with"])
+@client.command(aliases = ["with"])
 async def withdraw(ctx,amount = None):
 	await open_account(ctx.author)
 	if amount == 'all':
@@ -78,7 +78,7 @@ async def withdraw(ctx,amount = None):
 
 
 
-@client.command(alias = ["dep"])
+@client.command(aliases = ["dep"])
 async def deposit(ctx,amount = None):
 	await open_account(ctx.author)
 	if amount == 'all':
@@ -146,13 +146,13 @@ async def send(ctx,member:discord.Member,amount = None):
 		await ctx.send("Amount must be positive!")
 		return
 
-	await update_bank(ctx.author,-1*amount,'bank')
-	await update_bank(member,amount,"bank")
+	await update_bank(ctx.author,-1*amount,'wallet')
+	await update_bank(member,amount,"wallet")
 
 	await ctx.send(f"You gave {amount} coins!")
 
 
-@client.command(alias = ["sl"])
+@client.command(aliases = ["sl"])
 async def slots(ctx,amount = None):
 	await open_account(ctx.author)
 
@@ -198,14 +198,12 @@ async def slots(ctx,amount = None):
 		return
 
 
-mainshop = [{"name":"Dildo :eggplant:","price":69,"description":"Very Popular among the 'Ladies'"},
-			{"name":"Electric Vibrator","price":420,"description":"Even more Popular among the 'Ladies'"},
-			{"name":"Watch","price":200,"description":"Tells Time Very Well :luaghing:"},
-			{"name":"Laptop","price":1000,"description":"Good for work. :+1:"},
-			{"name":"Pc","price":5000,"description":"Gamers only :sunglasses:"},
-			{"names":"House","price":20000,"description":"You know what they say, there is no place like home, but home, so pls just buy it..... pls...."},]
+mainshop = [{"name":":watch:","price":200,"description":"Tells Time Very Well :laughing:"},
+			{"name":":computer:","price":1000,"description":"Good for work. :+1:"},
+			{"name":":desktop:","price":5000,"description":"Gamers only :sunglasses:"},
+			{"name":":house:","price":20000,"description":"You know what they say, there is no place like home, but home, so pls just buy it..... pls...."}]
 
-@client.command()
+@client.command(aliases = ["Shop"])
 async def shop(ctx):
 	em = discord.Embed(title = "Shop")
 
@@ -235,7 +233,7 @@ async def buy(ctx, item, amount = 1):
 
 	await ctx.send(f"You just bought {item} for {amount} coins!")
 
-@client.command(alias = ["inv"])
+@client.command(aliases = ["inv"])
 async def inventory(ctx):
 	await open_account(ctx.author)
 	user = ctx.author
@@ -368,7 +366,9 @@ async def sell_this(user,item_name,amount,price = None):
 
     await update_bank(user,cost,"wallet")
 
-    return [True,"Worked"]@client.command(aliases = ["lb"])
+    return [True,"Worked"]
+
+@client.command(aliases = ["lb"])
 async def leaderboard(ctx,x = 1):
     users = await get_bank_data()
     leader_board = {}
@@ -395,8 +395,6 @@ async def leaderboard(ctx,x = 1):
 
     await ctx.send(embed = em)
 
-
-    
 
 async def open_account(user):
 
