@@ -345,19 +345,5 @@ async def update_bank(user,change = 0,mode = 'wallet'):
 	return bal
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 while True:
   client.run(TOKEN)
