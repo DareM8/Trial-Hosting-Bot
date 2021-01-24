@@ -1,0 +1,16 @@
+{
+  "embed": {
+    "title": "⚠️*Under Construction*⚠️",
+    "description": "```This command is still under construction```",
+    "color": 16761856,
+    "footer": {
+      "text": "By SoulessDare|Trial",
+      "icon_url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true"
+    },
+    "author": {
+      "name": "By SoulessDare|Trial",
+      "icon_url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true"
+    },
+    "fields": [ ]
+  }
+}

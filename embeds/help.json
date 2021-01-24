@@ -1,0 +1,72 @@
+{
+  "content": "`PyBot's Help Menu`",
+  "embed": {
+    "title": "Commands:",
+    "description": "Trial is an Economy Bot that is urrently in Beta.\nHere's some commands to get started.",
+    "color": 16761856,
+    "footer": {
+      "icon_url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true",
+      "text": "By SoulessDare|Trial"
+    },
+    "thumbnail": {
+      "url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true"
+    },
+    "image": {
+      "url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true"
+    },
+    "author": {
+      "name": "Trial",
+      "icon_url": "https://github.com/DareM8/Trial-Hosting-Bot/blob/master/DarkSide.jpg?raw=true"
+    },
+    "fields": [
+      {
+        "name": "$help/h",
+        "value": "```txt\nShows you this lovely menu \n```"
+      },
+      {
+        "name": "$balance/bal",
+        "value": "```Shows how much balance you have in ur wallet and bank.```"
+      },
+      {
+        "name": "$beg",
+        "value": "```Makes you beg for money```"
+      },
+      {
+        "name": "$withdraw/with",
+        "value": "```Allows you to withdraw money from your bank to your wallet. Note: Money from the wallet can be robbed.```"
+      },
+      {
+        "name": "$deposit/dep",
+        "value": "```Allows you to deposit money from your wallet to your bank. Note: Money can not be robbed from the bank.```"
+      },
+      {
+        "name": "$rob/r",
+        "value": "```Allows you to rob money from someone's wallet. Note: money can not be robbed from the bank.```"
+      },
+      {
+        "name": "$send/s",
+        "value": "```Allows you to send money from your wallet to someone elses wallet.```"
+      },
+      {
+        "name": "$slots/sl",
+        "value": "```Allows you to bet money, and if you win, you will recieve double the amount.```"
+      },
+      {
+        "name": "$shop",
+        "value": "```Shows the shop items.```"
+      },
+      {
+        "name": "$inventory/inv",
+        "value": "```Shows all the items you own in ur inventory```"
+      },
+      {
+        "name": "$buy",
+        "value": "```Allows you to buy an item from the shop```"
+      },
+      {
+        "name": "$sell",
+        "value": "```Allows you to sell an item that you have in ure inventory.```"
+      }
+    ]
+  }
+}

@@ -8,12 +8,17 @@ TOKEN = ""
 with open("config.txt", "r") as f:
     TOKEN = base64.b64decode(bytes(f.read().strip(), "utf-8")).decode('utf-8')
 
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix = '$')
 
+botObj =  commands.Bot(command_prefix="$", help_command=None)
 
 @client.event
 async def on_ready():
 	print('Connected')
+
+@botObj.command(aliases=["h"])
+async def help(ctx):
+	await bot_help.help(ctx)
 
 
 @client.command(aliases = ["bal"])
@@ -105,7 +110,7 @@ async def deposit(ctx,amount = None):
 	await ctx.send(f"You deposited {amount} coins!")
 
 
-@client.command()
+@client.command(aliases = ["r"])
 async def rob(ctx,member:discord.Member):
 	await open_account(ctx.author)
 	await open_account(member)
@@ -124,7 +129,7 @@ async def rob(ctx,member:discord.Member):
 	await ctx.send(f"You robbed {member} and got {earnings} coins!")
 
 
-@client.command()
+@client.command(aliases = ["s"])
 async def send(ctx,member:discord.Member,amount = None):
 	await open_account(ctx.author)
 	await open_account(member)
@@ -166,7 +171,7 @@ async def slots(ctx,amount = None):
 		await ctx.send("Amount must be positive!")
 		return
 
-	final = [random.choice([":seven:",":rock:",":flame:",":ocean:",":poop:",":expressionless:",":middle_finger:"]) for i in range(5)]
+	final = [random.choice([":seven:",":rock:",":flame:",":ocean:",":poop:",":expressionless:",":money_mouth:"]) for i in range(3)]
 
 	await ctx.send(str(final))
 
@@ -198,10 +203,12 @@ async def slots(ctx,amount = None):
 		return
 
 
-mainshop = [{"name":":watch:","price":200,"description":"Tells Time Very Well :laughing:"},
-			{"name":":computer:","price":1000,"description":"Good for work. :+1:"},
-			{"name":":desktop:","price":5000,"description":"Gamers only :sunglasses:"},
-			{"name":":house:","price":20000,"description":"You know what they say, there is no place like home, but home, so pls just buy it..... pls...."}]
+mainshop = [#{"name":"Dildo","price":69,"description":":eggplant:Very Popular among the Ladies"},
+			#{"name":"Electric Vibrator","price":420,"description":":magic_wand:Even more Popular among the Ladies"},
+			{"name":"Watch","price":200,"description":":watch:Tells Time Very Well :laughing:"},
+			{"name":"Laptop","price":1000,"description":":computer:Good for work. :+1:"},
+			{"name":"PC","price":5000,"description":":desktop:Gamers only :sunglasses:"},
+			{"name":"House","price":20000,"description":":house:You know what they say, there is no place like home, but home, so pls just buy it..... pls...."}]
 
 @client.command(aliases = ["Shop"])
 async def shop(ctx):
@@ -355,11 +362,11 @@ async def sell_this(user,item_name,amount,price = None):
                 users[str(user.id)]["bag"][index]["amount"] = new_amt
                 t = 1
                 break
-            index+=1 
+            index+=1
         if t == None:
             return [False,3]
     except:
-        return [False,3]    
+        return [False,3]
 
     with open("mainbank.json","w") as f:
         json.dump(users,f)
@@ -368,33 +375,33 @@ async def sell_this(user,item_name,amount,price = None):
 
     return [True,"Worked"]
 
-@client.command(aliases = ["lb"])
-async def leaderboard(ctx,x = 1):
-    users = await get_bank_data()
-    leader_board = {}
-    total = []
-    for user in users:
-        name = int(user)
-        total_amount = users[user]["wallet"] + users[user]["bank"]
-        leader_board[total_amount] = name
-        total.append(total_amount)
+#@client.command(aliases = ["lb", "leaderboard"])
+#async def leaderboard(ctx,top = 1):
+#	users = await get_bank_data()
+#	netWorth = lambda user: users[user]["wallet"] + users[user]["bank"]
+#	leader_board = {NetWort(user): int(user) for user in users[:top]}
+#
+#	embedObj = discord.Embed(
+#		title = f"Top { top } Richest People",
+#		description = "This is decided on the basis of raw money in the bank and wallet",
+#		color = discord.Color(0xfa43ee)
+#		)
+#
+#	counter = 0
+#	worths = sorted(list(leader_board.keys()))[::-1]
+#	names = sorted(list(leader_board.values()))[::-1]
+#
+#	for i, j in zip(worths, names):
+#		username = client.get_user( j ).name
+#
+#		embedObj.add_field(
+#			name   = f"{ counter }. { username }",
+#			value  = f"{ i }",
+#			inline = False)
 
-    total = sorted(total,reverse=True)    
+#		counter += 1
 
-    em = discord.Embed(title = f"Top {x} Richest People" , description = "This is decided on the basis of raw money in the bank and wallet",color = discord.Color(0xfa43ee))
-    index = 1
-    for amt in total:
-        id_ = leader_board[amt]
-        member = client.get_user(id_)
-        name = member.name
-        em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
-        if index == x:
-            break
-        else:
-            index += 1
-
-    await ctx.send(embed = em)
-
+#	await ctx.send(embed = embedObj)
 
 async def open_account(user):
 
@@ -431,6 +438,20 @@ async def update_bank(user,change = 0,mode = 'wallet'):
 
 	bal = [users[str(user.id)]['wallet'],users[str(user.id)]['bank']]
 	return bal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 while True:
